@@ -20,7 +20,7 @@ var enableDebugMode = function(game, enable) {
 document.querySelector("#id-input-speed").addEventListener('input', function(event) {
     var input = event.target
     //log(event, input.value)
-    window.fps = input.value + 1
+    window.fps = Number(input.value)  + 1
 })
 
 var loadLevel = function(game, n) {
@@ -48,6 +48,7 @@ var loadLevel = function(game, n) {
       var game = GuaGame(30, images, function(g){
           var paddle = Paddle(game)
           var ball = Ball(game)
+          log(ball)
 
           paused = false
           blocks = loadLevel(game, 1)
@@ -84,6 +85,10 @@ var loadLevel = function(game, n) {
               }
           }
           game.draw = function() {
+              // 背景
+              game.context.fillStyle ='#666'
+              game.context.fillRect(0, 0, 400, 300)
+
               // draw
              game.drawImage(paddle)
              game.drawImage(ball)
@@ -95,10 +100,40 @@ var loadLevel = function(game, n) {
              }
              //draw labels
              game.context.fillText('分数 :' + score, 10, 290)
-
          }
+         // mouse event
+         var enableDrag = false
+         game.canvas.addEventListener('mousedown', function(event) {
+             var x = event.offsetX
+             var y = event.offsetY
+             // log(x, y, 'down')
+             // 检查是否点中了 ball
+             if(ball.hasPoint(x, y)) {
+                 // 设置拖拽状态
+                 enableDrag = true
+             }
+         })
+         game.canvas.addEventListener('mousemove', function(event) {
+             var x = event.offsetX
+             var y = event.offsetY
+
+             if(enableDrag) {
+                 log(x, y, 'drag')
+                 ball.x = x
+                 ball.y = y
+             }
+         })
+         game.canvas.addEventListener('mouseup', function(event) {
+             var x = event.offsetX
+             var y = event.offsetY
+             // log(x, y, 'up')
+           enableDrag = false
+         })
+
       })
 
       enableDebugMode(game, true)
+
+
   }
   __main()

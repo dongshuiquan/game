@@ -20,8 +20,8 @@ var Block = function(game, position) {
     o.collide = function(ball) {
         x1 = o.x
         y1 = o.y
-        x2 = o.x + o.image.width
-        y2 = o.y + o.image.height
+        x2 = o.x + o.w
+        y2 = o.y + o.h
 
         x3 = ball.x
         y3 = ball.y

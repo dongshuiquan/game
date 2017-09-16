@@ -25,5 +25,12 @@
      o.rebound = function() {
          o.speedY *= -1
      }
+
+     o.hasPoint = function(x, y) {
+         var xIn = x >= o.x && x <= o.x + o.w
+         var yIn = y >= o.y && y <= o.y + o.h
+         log(xIn, yIn)
+         return xIn && yIn
+     }
      return o
  }
