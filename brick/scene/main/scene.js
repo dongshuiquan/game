@@ -85,7 +85,7 @@ var Scene = function(game) {
         var x = event.offsetX
         var y = event.offsetY
         // log(x, y, 'up')
-      enableDrag = false
+       enableDrag = false
     })
 
     return s
