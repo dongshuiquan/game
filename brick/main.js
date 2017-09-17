@@ -43,8 +43,8 @@ var loadLevel = function(game, n) {
           paddle: 'img/paddle.png',
       }
 
-      var game = GuaGame(30, images,function(game) {
-         var scene = SceneTitle(game)
+      var game = new GuaGame(30, images,function(game) {
+         var scene = SceneTitle.new(game)
          game.replaceScene(scene)
       })
       enableDebugMode(game, true)

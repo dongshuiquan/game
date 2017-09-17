@@ -40,7 +40,7 @@ var Scene = function(game) {
             return
         }
         if(ball.y > paddle.y) {
-            var end = SceneEnd(game)
+            var end = SceneEnd.new(game)
             game.replaceScene(end)
         }
         ball.move()
